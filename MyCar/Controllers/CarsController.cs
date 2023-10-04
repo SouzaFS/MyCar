@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using MyCar.Context;
 using MyCar.Models;
+using MyCar.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,7 @@ namespace MyCar.Controllers
     public class CarsController : ControllerBase
     {
         private readonly AppDbContext _appDbContext;
-        private readonly ICarService _carService
+        private readonly ICarService _carService;
 
         //Construtor
         public CarsController(AppDbContext appDbContext, ICarService carService)
@@ -25,11 +26,12 @@ namespace MyCar.Controllers
 
         [HttpGet]
         //Async com await
+        //Inversão de controle - Injeção de Dependência
         public async Task<IActionResult> GetCars()
         {
             var result = await _carService.GetCars();
 
-            if (result.length > 0)
+            if (result.Count > 0)
             {
                 return Ok(new
                 {
@@ -40,6 +42,8 @@ namespace MyCar.Controllers
                 return NotFound();
             }
         }
+
+        //Fazer o mesmo do get pro post
 
         [HttpPost]
         public async Task<IActionResult> CreateCar(Car car)
