@@ -7338,11 +7338,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Documentos\\Projetos-C#\\MyCar.API\\MyCar\\MyCar.csproj",
+      "projectUniqueName": "D:\\Documentos\\Projetos-C#\\MyCar\\MyCar\\MyCar.csproj",
       "projectName": "MyCar",
-      "projectPath": "D:\\Documentos\\Projetos-C#\\MyCar.API\\MyCar\\MyCar.csproj",
+      "projectPath": "D:\\Documentos\\Projetos-C#\\MyCar\\MyCar\\MyCar.csproj",
       "packagesPath": "C:\\Users\\Família\\.nuget\\packages\\",
-      "outputPath": "D:\\Documentos\\Projetos-C#\\MyCar.API\\MyCar\\obj\\",
+      "outputPath": "D:\\Documentos\\Projetos-C#\\MyCar\\MyCar\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "D:\\Microsoft Visual Studio\\Shared\\NuGetPackages"
