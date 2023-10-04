@@ -14,22 +14,31 @@ namespace MyCar.Controllers
     public class CarsController : ControllerBase
     {
         private readonly AppDbContext _appDbContext;
+        private readonly ICarService _carService
 
         //Construtor
-        public CarsController(AppDbContext appDbContext)
+        public CarsController(AppDbContext appDbContext, ICarService carService)
         {
             _appDbContext = appDbContext;
+            _carService = carService;
         }
 
         [HttpGet]
         //Async com await
         public async Task<IActionResult> GetCars()
         {
-            return Ok(new
+            var result = await _carService.GetCars();
+
+            if (result.length > 0)
             {
-                success = true,
-                data = await _appDbContext.Cars.ToListAsync()
-            });
+                return Ok(new
+                {
+                    success = true,
+                    data = result
+                });
+            }else{
+                return NotFound();
+            }
         }
 
         [HttpPost]
