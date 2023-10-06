@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MyCar.Context;
+using MyCar.DTOs;
+using MyCar.Mappers;
 using MyCar.Models;
 using MyCar.Services.Interfaces;
 using System;
@@ -17,7 +19,6 @@ namespace MyCar.Controllers
         private readonly AppDbContext _appDbContext;
         private readonly ICarService _carService;
 
-        //Construtor
         public CarsController(AppDbContext appDbContext, ICarService carService)
         {
             _appDbContext = appDbContext;
@@ -26,7 +27,7 @@ namespace MyCar.Controllers
 
         [HttpGet]
         //Async com await
-        //Inversão de controle - Injeção de Dependência
+        //Inversão de controle
         public async Task<IActionResult> GetCars()
         {
             var result = await _carService.GetCars();
@@ -38,23 +39,52 @@ namespace MyCar.Controllers
                     success = true,
                     data = result
                 });
-            }else{
-                return NotFound();
             }
+            else
+                return NotFound();
         }
 
-        //Fazer o mesmo do get pro post
+        //Fazer update e delete
+        //Referências: Macoratti, Medium
+
+        [HttpGet]
+        [Route("{id}")]
+        public async Task<IActionResult> GetCarById(int id)
+        {
+            try
+            {
+                
+                var result = await _carService.GetCarById(id);
+                if (result != null)
+                {
+                    return Ok(new
+                    {
+                        success = true,
+                        data = result
+                    });
+                }
+                else
+                {
+                    return NotFound();
+                }
+
+            }
+            catch (Exception e)
+            {
+                return Problem(null,null,500);
+            }
+
+        }
 
         [HttpPost]
-        public async Task<IActionResult> CreateCar(Car car)
+        public async Task<IActionResult> CreateCar(CarDTO carDTO)
         {
-            _appDbContext.Cars.Add(car);
-            await _appDbContext.SaveChangesAsync();
+            var result = await _carService.CreateCars(carDTO);
 
             return Ok(new
             {
                 success = true,
-                data = car
+                data = result
             });
         }
     }

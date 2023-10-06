@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MyCar.Context;
+using MyCar.DTOs;
+using MyCar.Mappers;
 using MyCar.Models;
 using MyCar.Repositories.Interfaces;
 using MyCar.Services.Interfaces;
@@ -18,9 +20,21 @@ namespace MyCar.Services
             _carRepository = carRepository;
         }
 
-        public async Task<List<Car>> GetCars(){
-            return await _carRepository.GetCars();
+        public async Task<List<CarDTO>> GetCars()
+        {
+            return CarMapper.FromModelToDTOList(await _carRepository.GetCars());
+        }
+
+        public async Task<CarDTO> GetCarById(int Id)
+        {
+            return CarMapper.FromModelToDTO(await _carRepository.GetCarById(Id));
+        }
+
+        public async Task<int> CreateCars(CarDTO carDTO)
+        {
+            return await _carRepository.CreateCars(CarMapper.FromDTOToModel(carDTO));
         }
     }
+    
 
 }

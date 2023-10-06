@@ -10,7 +10,10 @@ namespace MyCar.Repositories.Interfaces
 {
     public interface ICarRepository
     {
-        public Task<List<Car>> GetCars();
+        public Task<List<CarModel>> GetCars();
+
+        public Task<CarModel> GetCarById(int Id);
+        public Task<int> CreateCars(CarModel car);
     }
 
 }

@@ -12,12 +12,28 @@ namespace MyCar.Repositories {
     {
         private readonly AppDbContext _appDbContext;
 
-        public CarRepository(AppDbContext appDbContext){
+        public CarRepository(AppDbContext appDbContext)
+        {
             _appDbContext = appDbContext;
         }
 
-        public async Task<List<Car>> GetCars(){
+        public async Task<List<CarModel>> GetCars()
+        {
             return await _appDbContext.Cars.ToListAsync();
+        }
+
+        public async Task<CarModel> GetCarById(int Id)
+        {
+            return await _appDbContext.Cars.FindAsync(Id);
+        }
+
+        //CRUD = Create, Read, Update and Delete
+        public async Task<int> CreateCars(CarModel car)
+        {
+            _appDbContext.Cars.Add(car);
+            await _appDbContext.SaveChangesAsync();
+
+            return car.Id;
         }
     }
 

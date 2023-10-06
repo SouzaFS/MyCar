@@ -16,7 +16,7 @@ namespace MyCar.Context
         {
 
         }
-        public DbSet<Car> Cars { get; set; }
+        public DbSet<CarModel> Cars { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

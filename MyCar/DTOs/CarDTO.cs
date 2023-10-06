@@ -1,8 +1,7 @@
-﻿namespace MyCar.Models
+﻿namespace MyCar.DTOs
 {
-    public class CarModel
+    public class CarDTO
     {
-        public int Id { get; set; }
         public string Brand { get; set; }
         public decimal Price { get; set; }
         public string Plate { get; set; }
