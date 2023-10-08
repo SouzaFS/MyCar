@@ -7,7 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace MyCar.Repositories { 
+namespace MyCar.Repositories {
     public class CarRepository : ICarRepository
     {
         private readonly AppDbContext _appDbContext;
@@ -22,9 +22,9 @@ namespace MyCar.Repositories {
             return await _appDbContext.Cars.ToListAsync();
         }
 
-        public async Task<CarModel> GetCarById(int Id)
+        public async Task<CarModel> GetCarById(int id)
         {
-            return await _appDbContext.Cars.FindAsync(Id);
+            return await _appDbContext.Cars.FindAsync(id);
         }
 
         //CRUD = Create, Read, Update and Delete
@@ -34,6 +34,24 @@ namespace MyCar.Repositories {
             await _appDbContext.SaveChangesAsync();
 
             return car.Id;
+        }
+
+        public async Task<int> UpdateCar(int id, CarModel car)
+        {
+            car.Id = id;
+            _appDbContext.Cars.Update(car);
+            await _appDbContext.SaveChangesAsync();
+
+            return car.Id;
+        }
+
+        public async Task<int> RemoveCarById(int id)
+        {
+            var car = await GetCarById(id);
+            _appDbContext.Cars.Remove(car);
+            await _appDbContext.SaveChangesAsync();
+
+            return id;
         }
     }
 

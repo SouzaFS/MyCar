@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MyCar.Context;
 using MyCar.DTOs;
@@ -69,7 +70,7 @@ namespace MyCar.Controllers
                 }
 
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return Problem(null,null,500);
             }
@@ -79,13 +80,26 @@ namespace MyCar.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateCar(CarDTO carDTO)
         {
-            var result = await _carService.CreateCars(carDTO);
+            return new ObjectResult(await _carService.CreateCars(carDTO)) { StatusCode = StatusCodes.Status201Created };
+        }
 
-            return Ok(new
-            {
-                success = true,
-                data = result
-            });
+        [HttpPut]
+        public async Task<IActionResult> UpdateCar(int Id, CarDTO carDTO)
+        {
+            var result = await _carService.UpdateCar(Id, carDTO);
+
+                return Ok(new
+                {
+                    success = true,
+                    data = result
+                });
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> RemoveCar(int Id)
+        {
+            await _carService.RemoveCarById(Id);
+            return NoContent();
         }
     }
 }

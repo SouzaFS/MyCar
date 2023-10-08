@@ -13,7 +13,12 @@ namespace MyCar.Repositories.Interfaces
         public Task<List<CarModel>> GetCars();
 
         public Task<CarModel> GetCarById(int Id);
+
         public Task<int> CreateCars(CarModel car);
+
+        public Task<int> UpdateCar(int Id, CarModel car);
+
+        public Task<int> RemoveCarById(int Id);
     }
 
 }
