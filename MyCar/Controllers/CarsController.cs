@@ -27,8 +27,6 @@ namespace MyCar.Controllers
         }
 
         [HttpGet]
-        //Async com await
-        //Inversão de controle
         public async Task<IActionResult> GetCars()
         {
             var result = await _carService.GetCars();
@@ -44,9 +42,6 @@ namespace MyCar.Controllers
             else
                 return NotFound();
         }
-
-        //Fazer update e delete
-        //Referências: Macoratti, Medium
 
         [HttpGet]
         [Route("{id}")]
@@ -114,8 +109,9 @@ namespace MyCar.Controllers
                 await _carService.RemoveCarById(Id);
                 return NoContent();
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                var teste = e;
                 return Problem(null, null, 500);
             }
         }

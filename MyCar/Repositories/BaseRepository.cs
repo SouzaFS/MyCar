@@ -3,6 +3,7 @@ using MyCar.Context;
 using MyCar.Repositories.Interfaces;
 using System;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace MyCar.Repositories
@@ -41,7 +42,7 @@ namespace MyCar.Repositories
             return table.AsNoTracking();
         }
 
-        public IQueryable<T> GetByWhere(System.Linq.Expressions.Expression<Func<T, bool>> predicate)
+        public IQueryable<T> GetByWhere(Expression<Func<T, bool>> predicate)
         {
             return table.Where(predicate).AsNoTracking();
         }
