@@ -1,22 +1,13 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using MyCar.Context;
-using MyCar.Repositories;
-using MyCar.Repositories.Interfaces;
 using MyCar.Services;
 using MyCar.Services.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace MyCar
 {
@@ -39,8 +30,8 @@ namespace MyCar
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "MyCar", Version = "v1" });
             });
             services.AddDbContext<AppDbContext>(option => option.UseSqlServer(Configuration.GetConnectionString("ServerConnection")));
-            services.AddScoped<ICarRepository, CarRepository>();
             services.AddScoped<ICarService, CarService>();
+            //services.AddScoped<IBaseRepository, BaseRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

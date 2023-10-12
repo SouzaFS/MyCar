@@ -15,11 +15,11 @@ namespace MyCar.Services.Interfaces
 
         public Task<CarDTO> GetCarById(int id);
 
-        public Task<int> CreateCars(CarDTO carDTO);
+        public Task CreateCars(CarDTO carDTO);
 
-        public Task<int> UpdateCar(int id, CarDTO carDTO);
+        public Task UpdateCar(int id, CarDTO carDTO);
 
-        public Task<int> RemoveCarById(int id);
+        public Task RemoveCarById(int id);
     }
 
 }

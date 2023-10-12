@@ -4,6 +4,7 @@ using MyCar.Context;
 using MyCar.DTOs;
 using MyCar.Mappers;
 using MyCar.Models;
+using MyCar.Repositories;
 using MyCar.Repositories.Interfaces;
 using MyCar.Services.Interfaces;
 using System;
@@ -14,35 +15,38 @@ namespace MyCar.Services
 {
     public class CarService : ICarService
     {
-        private readonly ICarRepository _carRepository;
+        private IBaseRepository<CarModel> _baseRepository = null;
 
-        public CarService(ICarRepository carRepository){
-            _carRepository = carRepository;
+        public CarService(){
+            _baseRepository = new BaseRepository<CarModel>();
         }
 
         public async Task<List<CarDTO>> GetCars()
         {
-            return CarMapper.FromModelToDTOList(await _carRepository.GetCars());
+            return CarMapper.FromModelToDTOList(await _baseRepository.GetAll().ToListAsync());
         }
 
         public async Task<CarDTO> GetCarById(int id)
         {
-            return CarMapper.FromModelToDTO(await _carRepository.GetCarById(id));
+            return CarMapper.FromModelToDTO(await _baseRepository.GetByWhere(a => a.Id == id).FirstOrDefaultAsync());
         }
 
-        public async Task<int> CreateCars(CarDTO carDTO)
+        public async Task CreateCars(CarDTO carDTO)
         {
-            return await _carRepository.CreateCars(CarMapper.FromDTOToModel(carDTO));
+            await _baseRepository.CreateAsync(CarMapper.FromDTOToModel(carDTO));
         }
 
-        public async Task<int> UpdateCar(int id, CarDTO carDTO)
+        public async Task UpdateCar(int id, CarDTO carDTO)
         {
-            return await _carRepository.UpdateCar(id, CarMapper.FromDTOToModel(carDTO));
+            var carModel = CarMapper.FromDTOToModel(carDTO);
+            carModel.Id = id;
+            await _baseRepository.UpdateAsync(carModel);
         }
 
-        public async Task<int> RemoveCarById(int id)
+        public async Task RemoveCarById(int id)
         {
-            return await _carRepository.RemoveCarById(id);
+            var carDTO = await GetCarById(id);
+            await _baseRepository.DeleteAsync(CarMapper.FromDTOToModel(carDTO));
         }
     }
     

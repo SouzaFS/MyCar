@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Documentos\\Projetos-C#\\MyCar\\MyCar\\MyCar.csproj": {}
+    "C:\\Projetos\\MyCar\\MyCar\\MyCar.csproj": {}
   },
   "projects": {
-    "D:\\Documentos\\Projetos-C#\\MyCar\\MyCar\\MyCar.csproj": {
+    "C:\\Projetos\\MyCar\\MyCar\\MyCar.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Documentos\\Projetos-C#\\MyCar\\MyCar\\MyCar.csproj",
+        "projectUniqueName": "C:\\Projetos\\MyCar\\MyCar\\MyCar.csproj",
         "projectName": "MyCar",
-        "projectPath": "D:\\Documentos\\Projetos-C#\\MyCar\\MyCar\\MyCar.csproj",
-        "packagesPath": "C:\\Users\\Família\\.nuget\\packages\\",
-        "outputPath": "D:\\Documentos\\Projetos-C#\\MyCar\\MyCar\\obj\\",
+        "projectPath": "C:\\Projetos\\MyCar\\MyCar\\MyCar.csproj",
+        "packagesPath": "C:\\Users\\Vir e Caio\\.nuget\\packages\\",
+        "outputPath": "C:\\Projetos\\MyCar\\MyCar\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "D:\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Família\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\Vir e Caio\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -79,10 +75,29 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[5.0.0, 5.0.0]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[5.0.17, 5.0.17]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[5.0.0, 5.0.0]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[5.0.0, 5.0.0]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -91,7 +106,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.402\\RuntimeIdentifierGraph.json"
         }
       }
     }
