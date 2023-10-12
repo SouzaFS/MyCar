@@ -27,8 +27,6 @@ namespace MyCar.Controllers
         }
 
         [HttpGet]
-        //Async com await
-        //Inversão de controle
         public async Task<IActionResult> GetCars()
         {
             var result = await _carService.GetCars();
@@ -44,9 +42,6 @@ namespace MyCar.Controllers
             else
                 return NotFound();
         }
-
-        //Fazer update e delete
-        //Referências: Macoratti, Medium
 
         [HttpGet]
         [Route("{id}")]
@@ -80,26 +75,45 @@ namespace MyCar.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateCar(CarDTO carDTO)
         {
-            return new ObjectResult(await _carService.CreateCars(carDTO)) { StatusCode = StatusCodes.Status201Created };
+            try
+            {
+                await _carService.CreateCars(carDTO);
+                return new ObjectResult(null) { StatusCode = StatusCodes.Status201Created };
+
+            }
+            catch (Exception)
+            {
+                return Problem(null, null, 500);
+            }
         }
 
         [HttpPut]
         public async Task<IActionResult> UpdateCar(int Id, CarDTO carDTO)
         {
-            var result = await _carService.UpdateCar(Id, carDTO);
-
-                return Ok(new
-                {
-                    success = true,
-                    data = result
-                });
+            try
+            {
+                await _carService.UpdateCar(Id, carDTO);
+                return Ok();
+            }
+            catch (Exception)
+            {
+                return Problem(null, null, 500);
+            }
         }
 
         [HttpDelete]
         public async Task<IActionResult> RemoveCar(int Id)
         {
-            await _carService.RemoveCarById(Id);
-            return NoContent();
+            try
+            {
+                await _carService.RemoveCarById(Id);
+                return NoContent();
+            }
+            catch (Exception e)
+            {
+                var teste = e;
+                return Problem(null, null, 500);
+            }
         }
     }
 }
