@@ -15,21 +15,21 @@ namespace MyCar.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CarsController : ControllerBase
+    public class UsersController : ControllerBase
     {
         private readonly AppDbContext _appDbContext;
-        private readonly ICarService _carService;
+        private readonly IUserService _userService;
 
-        public CarsController(AppDbContext appDbContext, ICarService carService)
+        public UsersController(AppDbContext appDbContext, IUserService userService)
         {
             _appDbContext = appDbContext;
-            _carService = carService;
+            _userService = userService;
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetCars()
+        public async Task<IActionResult> GetUsers()
         {
-            var result = await _carService.GetCars();
+            var result = await _userService.GetUsers();
 
             if (result.Count > 0)
             {
@@ -45,12 +45,12 @@ namespace MyCar.Controllers
 
         [HttpGet]
         [Route("{id}")]
-        public async Task<IActionResult> GetCarById(int id)
+        public async Task<IActionResult> GetUserById(int id)
         {
             try
             {
                 
-                var result = await _carService.GetCarById(id);
+                var result = await _userService.GetUserById(id);
                 if (result != null)
                 {
                     return Ok(new
@@ -73,11 +73,11 @@ namespace MyCar.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateCar(CarDTO carDTO)
+        public async Task<IActionResult> CreateUser(UserDTO userDTO)
         {
             try
             {
-                await _carService.CreateCars(carDTO);
+                await _userService.CreateUser(userDTO);
                 return new ObjectResult(null) { StatusCode = StatusCodes.Status201Created };
 
             }
@@ -88,11 +88,12 @@ namespace MyCar.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdateCar(int Id, CarDTO carDTO)
+        [Route("{id}")]
+        public async Task<IActionResult> UpdateUser(int id, UserDTO userDTO)
         {
             try
             {
-                await _carService.UpdateCar(Id, carDTO);
+                await _userService.UpdateUser(id, userDTO);
                 return Ok();
             }
             catch (Exception)
@@ -102,11 +103,11 @@ namespace MyCar.Controllers
         }
 
         [HttpDelete]
-        public async Task<IActionResult> RemoveCar(int Id)
+        public async Task<IActionResult> RemoveUser(int Id)
         {
             try
             {
-                await _carService.RemoveCarById(Id);
+                await _userService.RemoveUserById(Id);
                 return NoContent();
             }
             catch (Exception e)
