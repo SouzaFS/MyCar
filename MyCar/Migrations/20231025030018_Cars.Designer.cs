@@ -10,7 +10,7 @@ using MyCar.Context;
 namespace MyCar.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20231020045627_Cars")]
+    [Migration("20231025030018_Cars")]
     partial class Cars
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -61,7 +61,10 @@ namespace MyCar.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("CarModelId")
+                    b.Property<string>("Acessory")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("CarModelId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -233,7 +236,9 @@ namespace MyCar.Migrations
                 {
                     b.HasOne("MyCar.Models.CarModel", "CarModel")
                         .WithMany("CarAcessories")
-                        .HasForeignKey("CarModelId");
+                        .HasForeignKey("CarModelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("CarModel");
                 });

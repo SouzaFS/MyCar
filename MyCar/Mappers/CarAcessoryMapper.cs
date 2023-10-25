@@ -14,7 +14,8 @@ namespace MyCar.Mappers
         {
             return new CarAcessoryDTO()
             {
-                
+                CarId = carAcessoryModel.CarModelId,
+                Acessory = carAcessoryModel.Acessory
             };
         }
 
@@ -22,7 +23,8 @@ namespace MyCar.Mappers
         {
             return new CarAcessoryModel()
             {
-                
+                CarModelId = carAcessoryDTO.CarId,
+                Acessory = carAcessoryDTO.Acessory
             };
         }
 

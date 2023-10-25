@@ -124,7 +124,8 @@ namespace MyCar.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CarModelId = table.Column<int>(type: "int", nullable: true)
+                    Acessory = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CarModelId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -134,7 +135,7 @@ namespace MyCar.Migrations
                         column: x => x.CarModelId,
                         principalTable: "Cars",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(

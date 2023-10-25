@@ -15,21 +15,21 @@ namespace MyCar.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AdvertisingsController : ControllerBase
+    public class CarAcessoryController : ControllerBase
     {
         private readonly AppDbContext _appDbContext;
-        private readonly IAdvertisingService _advertisingService;
+        private readonly ICarAcessoriesService _carAcessoriesService;
 
-        public AdvertisingsController(AppDbContext appDbContext, IAdvertisingService advertisingService)
+        public CarAcessoryController(AppDbContext appDbContext, ICarAcessoriesService carAcessoriesService)
         {
             _appDbContext = appDbContext;
-            _advertisingService = advertisingService;
+            _carAcessoriesService = carAcessoriesService;
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAds()
+        public async Task<IActionResult> GetCarsAcessories()
         {
-            var result = await _advertisingService.GetAds();
+            var result = await _carAcessoriesService.GetCarsAcessories();
 
             if (result.Count > 0)
             {
@@ -45,12 +45,11 @@ namespace MyCar.Controllers
 
         [HttpGet]
         [Route("{id}")]
-        public async Task<IActionResult> GetAdById(int id)
+        public async Task<IActionResult> GetCarAcessoryById(int id)
         {
             try
             {
-                
-                var result = await _advertisingService.GetAdById(id);
+                var result = await _carAcessoriesService.GetCarAcessoryById(id);
                 if (result != null)
                 {
                     return Ok(new
@@ -73,11 +72,11 @@ namespace MyCar.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateAd(AdvertisingDTO advertisingDTO)
+        public async Task<IActionResult> CreateCarAcessory(CarAcessoryDTO carAcessoryDTO)
         {
             try
             {
-                await _advertisingService.CreateAd(advertisingDTO);
+                await _carAcessoriesService.CreateCarAcessory(carAcessoryDTO);
                 return new ObjectResult(null) { StatusCode = StatusCodes.Status201Created };
 
             }
@@ -89,11 +88,11 @@ namespace MyCar.Controllers
 
         [HttpPut]
         [Route("{id}")]
-        public async Task<IActionResult> UpdateAd(int id, AdvertisingDTO advertisingDTO)
+        public async Task<IActionResult> UpdateCarAcessory(int id, CarAcessoryDTO carAcessoryDTO)
         {
             try
             {
-                await _advertisingService.UpdateAd(id, advertisingDTO);
+                await _carAcessoriesService.UpdateCarAcessory(id, carAcessoryDTO);
                 return Ok();
             }
             catch (Exception)
@@ -103,11 +102,11 @@ namespace MyCar.Controllers
         }
 
         [HttpDelete]
-        public async Task<IActionResult> RemoveAd(int id)
+        public async Task<IActionResult> RemoveCarAcessoryById(int id)
         {
             try
             {
-                await _advertisingService.RemoveAdById(id);
+                await _carAcessoriesService.RemoveCarAcessoryById(id);
                 return NoContent();
             }
             catch (Exception e)

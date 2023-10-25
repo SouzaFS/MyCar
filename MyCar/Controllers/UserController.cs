@@ -103,11 +103,11 @@ namespace MyCar.Controllers
         }
 
         [HttpDelete]
-        public async Task<IActionResult> RemoveUser(int Id)
+        public async Task<IActionResult> RemoveUser(int id)
         {
             try
             {
-                await _userService.RemoveUserById(Id);
+                await _userService.RemoveUserById(id);
                 return NoContent();
             }
             catch (Exception e)

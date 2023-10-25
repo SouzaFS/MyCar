@@ -8,5 +8,9 @@ namespace MyCar.DTOs
     public class CarAcessoryDTO
     {
       
+        public string Acessory { get; set; }
+        public int CarId { get; set; }
+
+      
     }
 }
