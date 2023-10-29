@@ -40,7 +40,7 @@ namespace MyCar.Services
             return carDTO != null ? CarMapper.FromModelToDTO(carDTO) : null;
         }
 
-        public async Task CreateCars(CarDTO carDTO)
+        public async Task CreateCar(CarDTO carDTO)
         {
             await _baseRepository.CreateAsync(CarMapper.FromDTOToModel(carDTO));
         }

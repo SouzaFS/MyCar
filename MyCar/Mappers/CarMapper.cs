@@ -16,7 +16,17 @@ namespace MyCar.Mappers
             {
                 Brand = carModel.Brand,
                 Plate = carModel.Plate,
-                Price = carModel.Price
+                Year = carModel.Year,
+                Model = carModel.Model,
+                Version = carModel.Version,
+                Mileage = carModel.Mileage,
+                Fuel = carModel.Fuel,
+                Transmission = carModel.Transmission,
+                CarDoorAmount = carModel.CarDoorAmount,
+                CarSeatLiner = carModel.CarSeatLiner,
+                CRV = carModel.CRV,
+                Type = carModel.Type,
+                Color = carModel.Color
             };
         }
 
@@ -26,7 +36,17 @@ namespace MyCar.Mappers
             {
                 Brand = carDTO.Brand,
                 Plate = carDTO.Plate,
-                Price = carDTO.Price
+                Year = carDTO.Year,
+                Model = carDTO.Model,
+                Version = carDTO.Version,
+                Mileage = carDTO.Mileage,
+                Fuel = carDTO.Fuel,
+                Transmission = carDTO.Transmission,
+                CarDoorAmount = carDTO.CarDoorAmount,
+                CarSeatLiner = carDTO.CarSeatLiner,
+                CRV = carDTO.CRV,
+                Type = carDTO.Type,
+                Color = carDTO.Color
             };
         }
 

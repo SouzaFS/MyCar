@@ -31,7 +31,9 @@ namespace MyCar
             });
             services.AddDbContext<AppDbContext>(option => option.UseSqlServer(Configuration.GetConnectionString("ServerConnection")));
             services.AddScoped<ICarService, CarService>();
-            //services.AddScoped<IBaseRepository, BaseRepository>();
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IAdvertisingService, AdvertisingService>();
+            services.AddScoped<ICarAcessoriesService, CarAcessoriesService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
