@@ -12,5 +12,8 @@ namespace MyCar.Models
         public int Id { get; set; }
         public string State { get; set; }
         public string City { get; set; }
+        public int CarModelId { get; set; }
+        [ForeignKey("CarModelId")]
+        public virtual CarModel CarModel { get; set; }
     }
 }

@@ -15,21 +15,21 @@ namespace MyCar.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CarAcessoryController : ControllerBase
+    public class CarLocationController : ControllerBase
     {
         private readonly AppDbContext _appDbContext;
-        private readonly ICarAcessoriesService _carAcessoriesService;
+        private readonly ICarLocationService _carLocationService;
 
-        public CarAcessoryController(AppDbContext appDbContext, ICarAcessoriesService carAcessoriesService)
+        public CarLocationController(AppDbContext appDbContext, ICarLocationService carLocationService)
         {
             _appDbContext = appDbContext;
-            _carAcessoriesService = carAcessoriesService;
+            _carLocationService = carLocationService;
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetCarsAcessories()
+        public async Task<IActionResult> GetCarsLocation()
         {
-            var result = await _carAcessoriesService.GetCarsAcessories();
+            var result = await _carLocationService.GetCarsLocation();
 
             if (result.Count > 0)
             {
@@ -45,11 +45,11 @@ namespace MyCar.Controllers
 
         [HttpGet]
         [Route("{id}")]
-        public async Task<IActionResult> GetCarAcessoryById(int id)
+        public async Task<IActionResult> GetCarLocationById(int id)
         {
             try
             {
-                var result = await _carAcessoriesService.GetCarAcessoryById(id);
+                var result = await _carLocationService.GetCarLocationById(id);
                 if (result != null)
                 {
                     return Ok(new
@@ -71,38 +71,12 @@ namespace MyCar.Controllers
 
         }
 
-        [HttpGet]
-        [Route("{CarId}")]
-        public async Task<IActionResult> GetCarAcessoriesByCarId(int id)
-        {
-            try
-            {
-                var result = await _carAcessoriesService.GetCarAcessoriesByCarId(id);
-                if (result != null)
-                {
-                    return Ok(new
-                    {
-                        success = true,
-                        data = result
-                    });
-                }
-                else
-                {
-                    return NotFound();
-                }
-            }
-            catch (Exception)
-            {
-                return Problem(null, null, 500);
-            }
-        }
-
         [HttpPost]
-        public async Task<IActionResult> CreateCarAcessory(CarAcessoryDTO carAcessoryDTO)
+        public async Task<IActionResult> CreateCarLocation(CarLocationDTO carLocationDTO)
         {
             try
             {
-                await _carAcessoriesService.CreateCarAcessory(carAcessoryDTO);
+                await _carLocationService.CreateCarLocation(carLocationDTO);
                 return new ObjectResult(null) { StatusCode = StatusCodes.Status201Created };
 
             }
@@ -114,11 +88,11 @@ namespace MyCar.Controllers
 
         [HttpPut]
         [Route("{id}")]
-        public async Task<IActionResult> UpdateCarAcessory(int id, CarAcessoryDTO carAcessoryDTO)
+        public async Task<IActionResult> UpdateCarLocation(int id, CarLocationDTO carLocationDTO)
         {
             try
             {
-                await _carAcessoriesService.UpdateCarAcessory(id, carAcessoryDTO);
+                await _carLocationService.UpdateCarLocation(id, carLocationDTO);
                 return Ok();
             }
             catch (Exception)
@@ -128,11 +102,11 @@ namespace MyCar.Controllers
         }
 
         [HttpDelete]
-        public async Task<IActionResult> RemoveCarAcessoryById(int id)
+        public async Task<IActionResult> RemoveCarLocationById(int id)
         {
             try
             {
-                await _carAcessoriesService.RemoveCarAcessoryById(id);
+                await _carLocationService.RemoveCarLocationById(id);
                 return NoContent();
             }
             catch (Exception e)

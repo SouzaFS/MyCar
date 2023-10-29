@@ -14,7 +14,10 @@ namespace MyCar.Mappers
         {
             return new UserRegisterDTO()
             {
-                CPF = userRegisterModel.CPF
+                CPF = userRegisterModel.CPF,
+                UserId = userRegisterModel.UserModelId,
+                FacePhoto = userRegisterModel.FacePhoto,
+                DocumentPhoto = userRegisterModel.DocumentPhoto
             };
         }
 
@@ -22,7 +25,10 @@ namespace MyCar.Mappers
         {
             return new UserRegisterModel()
             {
-                CPF = userRegisterDTO.CPF
+                CPF = userRegisterDTO.CPF,
+                UserModelId = userRegisterDTO.UserId,
+                FacePhoto = userRegisterDTO.FacePhoto,
+                DocumentPhoto = userRegisterDTO.DocumentPhoto
             };
         }
 

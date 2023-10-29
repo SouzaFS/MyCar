@@ -40,6 +40,12 @@ namespace MyCar.Services
             return carAcessoryDTO != null ? CarAcessoryMapper.FromModelToDTO(carAcessoryDTO) : null;
         }
 
+        public async Task<CarAcessoryDTO> GetCarAcessoriesByCarId(int id)
+        {
+            var carAcessoryDTO = await _baseRepository.GetByWhere(a => a.CarModelId == id).FirstOrDefaultAsync();
+            return carAcessoryDTO != null ? CarAcessoryMapper.FromModelToDTO(carAcessoryDTO) : null;
+        }
+
         public async Task CreateCarAcessory(CarAcessoryDTO carAcessoryDTO)
         {
             await _baseRepository.CreateAsync(CarAcessoryMapper.FromDTOToModel(carAcessoryDTO));

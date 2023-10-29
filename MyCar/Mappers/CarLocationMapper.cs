@@ -15,7 +15,8 @@ namespace MyCar.Mappers
             return new CarLocationDTO()
             {
                 State = carLocationModel.State,
-                City = carLocationModel.City
+                City = carLocationModel.City,
+                CarId = carLocationModel.CarModelId
             };
         }
 
@@ -24,7 +25,8 @@ namespace MyCar.Mappers
             return new CarLocationModel()
             {
                 State = carLocationDTO.State,
-                City = carLocationDTO.City
+                City = carLocationDTO.City,
+                CarModelId = carLocationDTO.CarId
             };
         }
 

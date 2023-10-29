@@ -14,7 +14,8 @@ namespace MyCar.Mappers
         {
             return new CarPhotoDTO()
             {
-                
+                CarId = carPhotoModel.CarModelId,
+                Photo = carPhotoModel.Photo
             };
         }
 
@@ -22,7 +23,8 @@ namespace MyCar.Mappers
         {
             return new CarPhotoModel()
             {
-                
+               CarModelId = carPhotoDTO.CarId,
+               Photo = carPhotoDTO.Photo
             };
         }
 
