@@ -70,7 +70,7 @@ $ cd MyCar
 ### Using Visual Studio to run the project locally
 
 - Open the solution .sln in your Visual Studio
-- In the Console Manager, tap "Remove-Migration". After that, "Add-Migration Cars" and "Update-database"
+- In the Console Manager, type "Remove-Migration". After that, "Add-Migration Cars" and "Update-database"
 - Run it using IIS Express compiler to run locally
 
 ## 🧁 Final Considerations
