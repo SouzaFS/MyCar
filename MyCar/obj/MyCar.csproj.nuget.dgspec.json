@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Documentos\\Projetos-C#\\MyCar\\MyCar\\MyCar.csproj": {}
+    "C:\\Projetos-C#\\MyCar\\MyCar\\MyCar.csproj": {}
   },
   "projects": {
-    "D:\\Documentos\\Projetos-C#\\MyCar\\MyCar\\MyCar.csproj": {
+    "C:\\Projetos-C#\\MyCar\\MyCar\\MyCar.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Documentos\\Projetos-C#\\MyCar\\MyCar\\MyCar.csproj",
+        "projectUniqueName": "C:\\Projetos-C#\\MyCar\\MyCar\\MyCar.csproj",
         "projectName": "MyCar",
-        "projectPath": "D:\\Documentos\\Projetos-C#\\MyCar\\MyCar\\MyCar.csproj",
-        "packagesPath": "C:\\Users\\Família\\.nuget\\packages\\",
-        "outputPath": "D:\\Documentos\\Projetos-C#\\MyCar\\MyCar\\obj\\",
+        "projectPath": "C:\\Projetos-C#\\MyCar\\MyCar\\MyCar.csproj",
+        "packagesPath": "C:\\Users\\erica\\.nuget\\packages\\",
+        "outputPath": "C:\\Projetos-C#\\MyCar\\MyCar\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "D:\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Família\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\erica\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -91,7 +87,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.408\\RuntimeIdentifierGraph.json"
         }
       }
     }

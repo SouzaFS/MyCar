@@ -26,18 +26,24 @@ namespace MyCar.Services
             return CarPhotoMapper.FromModelToDTOList(await _baseRepository.GetAll().ToListAsync());
         }
 
-        public async Task<CarPhotoDTO> GetCarPhotosById(int id)
+        public async Task<CarPhotoDTO> GetCarPhotoById(int id)
         {
             var carPhotosDTO = await _baseRepository.GetByWhere(a => a.Id == id).FirstOrDefaultAsync();
             return carPhotosDTO != null ? CarPhotoMapper.FromModelToDTO(carPhotosDTO) : null;
         }
 
-        public async Task CreateCarPhotos(CarPhotoDTO carPhotosDTO)
+        public async Task<CarPhotoDTO> GetCarPhotosByCarId(int id)
+        {
+            var carPhotosDTO = await _baseRepository.GetByWhere(a => a.CarModelId == id).FirstOrDefaultAsync();
+            return carPhotosDTO != null ? CarPhotoMapper.FromModelToDTO(carPhotosDTO) : null;
+        }
+
+        public async Task CreateCarPhoto(CarPhotoDTO carPhotosDTO)
         {
             await _baseRepository.CreateAsync(CarPhotoMapper.FromDTOToModel(carPhotosDTO));
         }
 
-        public async Task UpdateCarPhotos(int id, CarPhotoDTO carPhotosDTO)
+        public async Task UpdateCarPhoto(int id, CarPhotoDTO carPhotosDTO)
         {
             var carPhotosModel = CarPhotoMapper.FromDTOToModel(carPhotosDTO);
             carPhotosModel.Id = id;

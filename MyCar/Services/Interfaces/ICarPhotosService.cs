@@ -13,13 +13,15 @@ namespace MyCar.Services.Interfaces
     {
         public Task<List<CarPhotoDTO>> GetCarsPhotos();
 
-        public Task<CarPhotoDTO> GetCarPhotosById(int id);
+        public Task<CarPhotoDTO> GetCarPhotoById(int id);
 
-        public Task CreateCarPhotos(CarPhotoDTO carPhotosDTO);
+        public Task<CarPhotoDTO> GetCarPhotosByCarId(int id);
 
-        public Task UpdateCarPhotos(int id, CarPhotoDTO carPhotosDTO);
+        public Task CreateCarPhoto(CarPhotoDTO carPhotosDTO);
 
-        public Task RemoveCarPhotosById(int id);
+        public Task UpdateCarPhoto(int id, CarPhotoDTO carPhotosDTO);
+
+        public Task RemoveCarPhotoById(int id);
     }
 
 }

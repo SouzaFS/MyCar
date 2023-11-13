@@ -14,5 +14,7 @@ namespace MyCar.Models
         public int UserModelId { get; set; }
         [ForeignKey("UserModelId")]
         public virtual UserModel UserModel { get; set; }
+        public string FacePhoto { get; set; }
+        public string DocumentPhoto { get; set; }
     }
 }

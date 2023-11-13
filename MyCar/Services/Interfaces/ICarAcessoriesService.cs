@@ -15,6 +15,8 @@ namespace MyCar.Services.Interfaces
 
         public Task<CarAcessoryDTO> GetCarAcessoryById(int id);
 
+        public Task<CarAcessoryDTO> GetCarAcessoriesByCarId(int id);
+
         public Task CreateCarAcessory(CarAcessoryDTO carAcessoryDTO);
 
         public Task UpdateCarAcessory(int id, CarAcessoryDTO carAcessoryDTO);

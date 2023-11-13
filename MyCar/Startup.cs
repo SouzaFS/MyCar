@@ -34,6 +34,8 @@ namespace MyCar
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IAdvertisingService, AdvertisingService>();
             services.AddScoped<ICarAcessoriesService, CarAcessoriesService>();
+            services.AddScoped<ICarLocationService, CarLocationService>();
+            services.AddScoped<ICarPhotosService, CarPhotosService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
