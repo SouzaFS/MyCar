@@ -50,9 +50,9 @@ namespace MyCar.Services
             await _baseRepository.UpdateAsync(carPhotosModel);
         }
 
-        public async Task RemoveCarPhotosById(int id)
+        public async Task RemoveCarPhotoById(int id)
         {
-            var carPhotosDTO = await GetCarPhotosById(id);
+            var carPhotosDTO = await GetCarPhotoById(id);
             var carPhotosModel = CarPhotoMapper.FromDTOToModel(carPhotosDTO);
             carPhotosModel.Id = id;
             await _baseRepository.DeleteAsync(carPhotosModel);
