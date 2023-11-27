@@ -25,15 +25,6 @@ namespace MyCar.Services
         {
             return AdvertisingMapper.FromModelToDTOList(await _baseRepository.GetAll().ToListAsync());
         }
-
-        //Estudos para próxima etapa:
-        //Linq, Lambda, Ternário
-        //Modelagem de Banco de Dados
-            //5 formas normais, normalização de banco de dados
-        //Diagrama Entidade Relacionamento
-            //Gerar diagrama de Entidade Relacionamento com base no Só Carrão
-        //Diagrama de Classe UML
-
         public async Task<AdvertisingDTO> GetAdById(int id)
         {
             var AdvertisingDTO = await _baseRepository.GetByWhere(a => a.Id == id).FirstOrDefaultAsync();
@@ -55,9 +46,12 @@ namespace MyCar.Services
         public async Task RemoveAdById(int id)
         {
             var AdvertisingDTO = await GetAdById(id);
-            var AdvertisingModel = AdvertisingMapper.FromDTOToModel(AdvertisingDTO);
-            AdvertisingModel.Id = id;
-            await _baseRepository.DeleteAsync(AdvertisingModel);
+            if (AdvertisingDTO != null)
+            {
+                var AdvertisingModel = AdvertisingMapper.FromDTOToModel(AdvertisingDTO);
+                AdvertisingModel.Id = id;
+                await _baseRepository.DeleteAsync(AdvertisingModel);
+            }
         }
     }
     

@@ -9,6 +9,9 @@ using MyCar.Repositories.Interfaces;
 using MyCar.Services.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
+using System.Security.Cryptography.Xml;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace MyCar.Services
@@ -16,23 +19,17 @@ namespace MyCar.Services
     public class UserService : IUserService
     {
         private IBaseRepository<UserModel> _baseRepository = null;
+        private MD5 _md5;
 
         public UserService(){
             _baseRepository = new BaseRepository<UserModel>();
+            _md5 = MD5.Create();
         }
 
         public async Task<List<UserDTO>> GetUsers()
         {
             return UserMapper.FromModelToDTOList(await _baseRepository.GetAll().ToListAsync());
         }
-
-        //Estudos para próxima etapa:
-        //Linq, Lambda, Ternário
-        //Modelagem de Banco de Dados
-            //5 formas normais, normalização de banco de dados
-        //Diagrama Entidade Relacionamento
-            //Gerar diagrama de Entidade Relacionamento com base no Só Carrão
-        //Diagrama de Classe UML
 
         public async Task<UserDTO> GetUserById(int id)
         {
@@ -42,6 +39,9 @@ namespace MyCar.Services
 
         public async Task CreateUser(UserDTO userDTO)
         {
+            byte[] encryptPassword = _md5.ComputeHash(Encoding.UTF8.GetBytes(userDTO.Password));
+            userDTO.Password = Convert.ToBase64String(encryptPassword);
+
             await _baseRepository.CreateAsync(UserMapper.FromDTOToModel(userDTO));
         }
 
@@ -55,9 +55,12 @@ namespace MyCar.Services
         public async Task RemoveUserById(int id)
         {
             var userDTO = await GetUserById(id);
-            var userModel = UserMapper.FromDTOToModel(userDTO);
-            userModel.Id = id;
-            await _baseRepository.DeleteAsync(userModel);
+            if (userDTO != null)
+            {
+                var userModel = UserMapper.FromDTOToModel(userDTO);
+                userModel.Id = id;
+                await _baseRepository.DeleteAsync(userModel);
+            } 
         }
     }
     

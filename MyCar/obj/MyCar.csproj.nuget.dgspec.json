@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Projetos\\GitHub\\MyCar\\MyCar\\MyCar.csproj": {}
+    "C:\\Projetos\\Github\\MyCar\\MyCar\\MyCar.csproj": {}
   },
   "projects": {
-    "C:\\Projetos\\GitHub\\MyCar\\MyCar\\MyCar.csproj": {
+    "C:\\Projetos\\Github\\MyCar\\MyCar\\MyCar.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Projetos\\GitHub\\MyCar\\MyCar\\MyCar.csproj",
+        "projectUniqueName": "C:\\Projetos\\Github\\MyCar\\MyCar\\MyCar.csproj",
         "projectName": "MyCar",
-        "projectPath": "C:\\Projetos\\GitHub\\MyCar\\MyCar\\MyCar.csproj",
-        "packagesPath": "C:\\Users\\felip\\.nuget\\packages\\",
-        "outputPath": "C:\\Projetos\\GitHub\\MyCar\\MyCar\\obj\\",
+        "projectPath": "C:\\Projetos\\Github\\MyCar\\MyCar\\MyCar.csproj",
+        "packagesPath": "C:\\Users\\erica\\.nuget\\packages\\",
+        "outputPath": "C:\\Projetos\\Github\\MyCar\\MyCar\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\felip\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\erica\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -88,7 +88,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }
