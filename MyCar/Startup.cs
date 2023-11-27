@@ -29,6 +29,15 @@ namespace MyCar
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "MyCar", Version = "v1" });
             });
+            services.AddCors(option =>
+            {
+                option.AddPolicy("MyPolicy", builder =>
+                {
+                    builder.AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .AllowAnyOrigin();
+                });
+            });
             services.AddDbContext<AppDbContext>(option => option.UseSqlServer(Configuration.GetConnectionString("ServerConnection")));
             services.AddScoped<ICarService, CarService>();
             services.AddScoped<IUserService, UserService>();
@@ -46,12 +55,15 @@ namespace MyCar
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "MyCar v1"));
+
             }
 
             app.UseHttpsRedirection();
+            app.UseCors("MyPolicy");
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

@@ -47,9 +47,12 @@ namespace MyCar.Services
         public async Task RemoveCarLocationById(int id)
         {
             var carLocationDTO = await GetCarLocationById(id);
-            var carLocationModel = CarLocationMapper.FromDTOToModel(carLocationDTO);
-            carLocationModel.Id = id;
-            await _baseRepository.DeleteAsync(carLocationModel);
+            if (carLocationDTO != null)
+            {
+                var carLocationModel = CarLocationMapper.FromDTOToModel(carLocationDTO);
+                carLocationModel.Id = id;
+                await _baseRepository.DeleteAsync(carLocationModel);
+            }
         }
     }
     

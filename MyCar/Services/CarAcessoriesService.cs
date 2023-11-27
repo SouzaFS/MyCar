@@ -25,15 +25,6 @@ namespace MyCar.Services
         {
             return CarAcessoryMapper.FromModelToDTOList(await _baseRepository.GetAll().ToListAsync());
         }
-
-        //Estudos para próxima etapa:
-        //Linq, Lambda, Ternário
-        //Modelagem de Banco de Dados
-            //5 formas normais, normalização de banco de dados
-        //Diagrama Entidade Relacionamento
-            //Gerar diagrama de Entidade Relacionamento com base no Só Carrão
-        //Diagrama de Classe UML
-
         public async Task<CarAcessoryDTO> GetCarAcessoryById(int id)
         {
             var carAcessoryDTO = await _baseRepository.GetByWhere(a => a.Id == id).FirstOrDefaultAsync();
@@ -61,9 +52,12 @@ namespace MyCar.Services
         public async Task RemoveCarAcessoryById(int id)
         {
             var carAcessoryDTO = await GetCarAcessoryById(id);
-            var carAcessoryModel = CarAcessoryMapper.FromDTOToModel(carAcessoryDTO);
-            carAcessoryModel.Id = id;
-            await _baseRepository.DeleteAsync(carAcessoryModel);
+            if (carAcessoryDTO != null)
+            {
+                var carAcessoryModel = CarAcessoryMapper.FromDTOToModel(carAcessoryDTO);
+                carAcessoryModel.Id = id;
+                await _baseRepository.DeleteAsync(carAcessoryModel);
+            }
         }
     }
     

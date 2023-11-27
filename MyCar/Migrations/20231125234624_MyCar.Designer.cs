@@ -10,8 +10,8 @@ using MyCar.Context;
 namespace MyCar.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20231025030018_Cars")]
-    partial class Cars
+    [Migration("20231125234624_MyCar")]
+    partial class MyCar
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -81,6 +81,9 @@ namespace MyCar.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("CarModelId")
+                        .HasColumnType("int");
+
                     b.Property<string>("City")
                         .HasColumnType("nvarchar(max)");
 
@@ -88,6 +91,8 @@ namespace MyCar.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CarModelId");
 
                     b.ToTable("CarLocations");
                 });
@@ -143,7 +148,9 @@ namespace MyCar.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("LocationId");
+                    b.HasIndex("LocationId")
+                        .IsUnique()
+                        .HasFilter("[LocationId] IS NOT NULL");
 
                     b.ToTable("Cars");
                 });
@@ -157,6 +164,9 @@ namespace MyCar.Migrations
 
                     b.Property<int>("CarModelId")
                         .HasColumnType("int");
+
+                    b.Property<string>("Photo")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -172,19 +182,19 @@ namespace MyCar.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Email")
+                    b.Property<string>("ConfirmPassword")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PasswordConfirmation")
+                    b.Property<string>("Phone")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Phone")
+                    b.Property<string>("Username")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -200,6 +210,12 @@ namespace MyCar.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("CPF")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DocumentPhoto")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FacePhoto")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("UserModelId")
@@ -243,11 +259,22 @@ namespace MyCar.Migrations
                     b.Navigation("CarModel");
                 });
 
+            modelBuilder.Entity("MyCar.Models.CarLocationModel", b =>
+                {
+                    b.HasOne("MyCar.Models.CarModel", "CarModel")
+                        .WithMany()
+                        .HasForeignKey("CarModelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CarModel");
+                });
+
             modelBuilder.Entity("MyCar.Models.CarModel", b =>
                 {
                     b.HasOne("MyCar.Models.CarLocationModel", "CarLocationModel")
-                        .WithMany()
-                        .HasForeignKey("LocationId");
+                        .WithOne()
+                        .HasForeignKey("MyCar.Models.CarModel", "LocationId");
 
                     b.Navigation("CarLocationModel");
                 });

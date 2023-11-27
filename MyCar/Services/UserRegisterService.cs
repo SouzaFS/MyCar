@@ -47,9 +47,12 @@ namespace MyCar.Services
         public async Task RemoveUserRegisterById(int id)
         {
             var userRegisterDTO = await GetUserRegisterById(id);
-            var userRegisterModel = UserRegisterMapper.FromDTOToModel(userRegisterDTO);
-            userRegisterModel.Id = id;
-            await _baseRepository.DeleteAsync(userRegisterModel);
+            if (userRegisterDTO != null)
+            {
+                var userRegisterModel = UserRegisterMapper.FromDTOToModel(userRegisterDTO);
+                userRegisterModel.Id = id;
+                await _baseRepository.DeleteAsync(userRegisterModel);
+            }
         }
     }
     

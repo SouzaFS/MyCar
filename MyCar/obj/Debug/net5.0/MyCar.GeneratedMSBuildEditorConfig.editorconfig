@@ -8,4 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = MyCar
-build_property.ProjectDir = C:\Projetos\GitHub\MyCar\MyCar\
+build_property.ProjectDir = C:\Projetos\Github\MyCar\MyCar\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 

@@ -14,11 +14,11 @@ namespace MyCar.Mappers
         {
             return new UserDTO()
             {
-                Name = userModel.Name,
+                Username = userModel.Username,
                 Email = userModel.Email,
                 Phone = userModel.Phone,
                 Password = userModel.Password,
-                PasswordConfirmation = userModel.PasswordConfirmation
+                ConfirmPassword = userModel.ConfirmPassword
             };
         }
 
@@ -26,11 +26,11 @@ namespace MyCar.Mappers
         {
             return new UserModel()
             {
-                Name = userDTO.Name,
+                Username = userDTO.Username,
                 Email = userDTO.Email,
                 Phone = userDTO.Phone,
                 Password = userDTO.Password,
-                PasswordConfirmation = userDTO.PasswordConfirmation
+                ConfirmPassword = userDTO.ConfirmPassword
             };
         }
 
