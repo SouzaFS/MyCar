@@ -75,4 +75,4 @@ $ cd MyCar
 
 ## 🧁 Final Considerations
 
-This project was set to improve my skills in C# and using databases, such as SQL Server. My career as a software engineer has just begun, and I am looking forward to improving a lot more on other projects.
+This project was set to improve my skills in C# and using databases, such as SQL Server. It will be implemented an Angular frontend project to update the database and allow users to login, register and announce cars. I am looking forward to improving a lot more on other projects.
