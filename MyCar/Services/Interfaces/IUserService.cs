@@ -15,6 +15,8 @@ namespace MyCar.Services.Interfaces
 
         public Task<UserDTO> GetUserById(int id);
 
+        public Task<UserDTO> GetUserByUsername(string username);
+
         public Task CreateUser(UserDTO userDTO);
 
         public Task UpdateUser(int id, UserDTO userDTO);

@@ -10,7 +10,7 @@ using MyCar.Context;
 namespace MyCar.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20231125234624_MyCar")]
+    [Migration("20240123022645_MyCar")]
     partial class MyCar
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -181,9 +181,6 @@ namespace MyCar.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("ConfirmPassword")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
