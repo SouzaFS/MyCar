@@ -44,7 +44,7 @@ namespace MyCar.Controllers
         }
 
         [HttpGet]
-        [Route("{id}")]
+        [Route("id")]
         public async Task<IActionResult> GetUserById(int id)
         {
             try
@@ -68,6 +68,35 @@ namespace MyCar.Controllers
             catch (Exception)
             {
                 return Problem(null,null,500);
+            }
+
+        }
+
+        [HttpGet]
+        [Route("username")]
+        public async Task<IActionResult> GetUserByUsername(string username)
+        {
+            try
+            {
+
+                var result = await _userService.GetUserByUsername(username);
+                if (result != null)
+                {
+                    return Ok(new
+                    {
+                        success = true,
+                        data = result
+                    });
+                }
+                else
+                {
+                    return NotFound();
+                }
+
+            }
+            catch (Exception)
+            {
+                return Problem(null, null, 500);
             }
 
         }

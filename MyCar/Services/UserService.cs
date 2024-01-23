@@ -37,10 +37,16 @@ namespace MyCar.Services
             return userDTO != null ? UserMapper.FromModelToDTO(userDTO) : null;
         }
 
+        public async Task<UserDTO> GetUserByUsername(string username)
+        {
+            var userDTO = await _baseRepository.GetByWhere(a => a.Username == username).FirstOrDefaultAsync();
+            return userDTO != null ? UserMapper.FromModelToDTO(userDTO) : null;
+        }
+
         public async Task CreateUser(UserDTO userDTO)
         {
-            byte[] encryptPassword = _md5.ComputeHash(Encoding.UTF8.GetBytes(userDTO.Password));
-            userDTO.Password = Convert.ToBase64String(encryptPassword);
+            //byte[] encryptPassword = _md5.ComputeHash(Encoding.UTF8.GetBytes(userDTO.Password));
+            //userDTO.Password = Convert.ToBase64String(encryptPassword);
 
             await _baseRepository.CreateAsync(UserMapper.FromDTOToModel(userDTO));
         }
