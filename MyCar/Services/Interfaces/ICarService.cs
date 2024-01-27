@@ -11,9 +11,9 @@ namespace MyCar.Services.Interfaces
 {
     public interface ICarService
     {
-        public Task<List<CarDTO>> GetCars();
+        public Task<List<CarModel>> GetCars();
 
-        public Task<CarDTO> GetCarById(int id);
+        public Task<CarModel> GetCarById(int id);
 
         public Task CreateCar(CarDTO carDTO);
 

@@ -17,7 +17,9 @@ namespace MyCar.Mappers
                 CPF = userRegisterModel.CPF,
                 UserId = userRegisterModel.UserModelId,
                 FacePhoto = userRegisterModel.FacePhoto,
-                DocumentPhoto = userRegisterModel.DocumentPhoto
+                DocumentPhoto = userRegisterModel.DocumentPhoto,
+                Name = userRegisterModel.Name,
+                Surname = userRegisterModel.Surname
             };
         }
 
@@ -28,7 +30,9 @@ namespace MyCar.Mappers
                 CPF = userRegisterDTO.CPF,
                 UserModelId = userRegisterDTO.UserId,
                 FacePhoto = userRegisterDTO.FacePhoto,
-                DocumentPhoto = userRegisterDTO.DocumentPhoto
+                DocumentPhoto = userRegisterDTO.DocumentPhoto,
+                Name = userRegisterDTO.Name,
+                Surname = userRegisterDTO.Surname
             };
         }
 

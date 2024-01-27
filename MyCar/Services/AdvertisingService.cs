@@ -21,36 +21,34 @@ namespace MyCar.Services
             _baseRepository = new BaseRepository<AdvertisingModel>();
         }
 
-        public async Task<List<AdvertisingDTO>> GetAds()
+        public async Task<List<AdvertisingModel>> GetAds()
         {
-            return AdvertisingMapper.FromModelToDTOList(await _baseRepository.GetAll().ToListAsync());
+            return await _baseRepository.GetAll().ToListAsync();
         }
-        public async Task<AdvertisingDTO> GetAdById(int id)
+        public async Task<AdvertisingModel> GetAdById(int id)
         {
-            var AdvertisingDTO = await _baseRepository.GetByWhere(a => a.Id == id).FirstOrDefaultAsync();
-            return AdvertisingDTO != null ? AdvertisingMapper.FromModelToDTO(AdvertisingDTO) : null;
-        }
-
-        public async Task CreateAd(AdvertisingDTO AdvertisingDTO)
-        {
-            await _baseRepository.CreateAsync(AdvertisingMapper.FromDTOToModel(AdvertisingDTO));
+            var advertisingModel = await _baseRepository.GetByWhere(a => a.Id == id).FirstOrDefaultAsync();
+            return advertisingModel != null ? advertisingModel : null;
         }
 
-        public async Task UpdateAd(int id, AdvertisingDTO AdvertisingDTO)
+        public async Task CreateAd(AdvertisingDTO advertisingDTO)
         {
-            var AdvertisingModel = AdvertisingMapper.FromDTOToModel(AdvertisingDTO);
-            AdvertisingModel.Id = id;
-            await _baseRepository.UpdateAsync(AdvertisingModel);
+            await _baseRepository.CreateAsync(AdvertisingMapper.FromDTOToModel(advertisingDTO));
+        }
+
+        public async Task UpdateAd(int id, AdvertisingDTO advertisingDTO)
+        {
+            var advertisingModel = AdvertisingMapper.FromDTOToModel(advertisingDTO);
+            advertisingModel.Id = id;
+            await _baseRepository.UpdateAsync(advertisingModel);
         }
 
         public async Task RemoveAdById(int id)
         {
-            var AdvertisingDTO = await GetAdById(id);
-            if (AdvertisingDTO != null)
+            var advertisingModel = await GetAdById(id);
+            if (advertisingModel != null)
             {
-                var AdvertisingModel = AdvertisingMapper.FromDTOToModel(AdvertisingDTO);
-                AdvertisingModel.Id = id;
-                await _baseRepository.DeleteAsync(AdvertisingModel);
+                await _baseRepository.DeleteAsync(advertisingModel);
             }
         }
     }

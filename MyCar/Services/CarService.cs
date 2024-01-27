@@ -21,14 +21,14 @@ namespace MyCar.Services
             _baseRepository = new BaseRepository<CarModel>();
         }
 
-        public async Task<List<CarDTO>> GetCars()
+        public async Task<List<CarModel>> GetCars()
         {
-            return CarMapper.FromModelToDTOList(await _baseRepository.GetAll().ToListAsync());
+            return await _baseRepository.GetAll().ToListAsync();
         }
-        public async Task<CarDTO> GetCarById(int id)
+        public async Task<CarModel> GetCarById(int id)
         {
-            var carDTO = await _baseRepository.GetByWhere(a => a.Id == id).FirstOrDefaultAsync();
-            return carDTO != null ? CarMapper.FromModelToDTO(carDTO) : null;
+            var carModel = await _baseRepository.GetByWhere(a => a.Id == id).FirstOrDefaultAsync();
+            return carModel != null ? carModel : null;
         }
 
         public async Task CreateCar(CarDTO carDTO)
@@ -45,11 +45,9 @@ namespace MyCar.Services
 
         public async Task RemoveCarById(int id)
         {
-            var carDTO = await GetCarById(id);
-            if (carDTO != null)
+            var carModel = await GetCarById(id);
+            if (carModel != null)
             {
-                var carModel = CarMapper.FromDTOToModel(carDTO);
-                carModel.Id = id;
                 await _baseRepository.DeleteAsync(carModel);
             }
         }

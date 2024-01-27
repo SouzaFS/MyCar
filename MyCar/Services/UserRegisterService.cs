@@ -21,15 +21,15 @@ namespace MyCar.Services
             _baseRepository = new BaseRepository<UserRegisterModel>();
         }
 
-        public async Task<List<UserRegisterDTO>> GetUsersRegisters()
+        public async Task<List<UserRegisterModel>> GetUsersRegisters()
         {
-            return UserRegisterMapper.FromModelToDTOList(await _baseRepository.GetAll().ToListAsync());
+            return await _baseRepository.GetAll().ToListAsync();
         }
 
-        public async Task<UserRegisterDTO> GetUserRegisterById(int id)
+        public async Task<UserRegisterModel> GetUserRegisterById(int id)
         {
-            var userRegisterDTO = await _baseRepository.GetByWhere(a => a.Id == id).FirstOrDefaultAsync();
-            return userRegisterDTO != null ? UserRegisterMapper.FromModelToDTO(userRegisterDTO) : null;
+            var userRegisterModel = await _baseRepository.GetByWhere(a => a.Id == id).FirstOrDefaultAsync();
+            return userRegisterModel != null ? userRegisterModel : null;
         }
 
         public async Task CreateUserRegister(UserRegisterDTO userRegisterDTO)
@@ -46,11 +46,9 @@ namespace MyCar.Services
 
         public async Task RemoveUserRegisterById(int id)
         {
-            var userRegisterDTO = await GetUserRegisterById(id);
-            if (userRegisterDTO != null)
+            var userRegisterModel = await GetUserRegisterById(id);
+            if (userRegisterModel != null)
             {
-                var userRegisterModel = UserRegisterMapper.FromDTOToModel(userRegisterDTO);
-                userRegisterModel.Id = id;
                 await _baseRepository.DeleteAsync(userRegisterModel);
             }
         }

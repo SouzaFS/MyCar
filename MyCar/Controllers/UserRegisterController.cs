@@ -44,7 +44,7 @@ namespace MyCar.Controllers
         }
 
         [HttpGet]
-        [Route("{id}")]
+        [Route("id")]
         public async Task<IActionResult> GetUserRegisterById(int id)
         {
             try
@@ -88,7 +88,7 @@ namespace MyCar.Controllers
         }
 
         [HttpPut]
-        [Route("{id}")]
+        [Route("id")]
         public async Task<IActionResult> UpdateUserRegister(int id, UserRegisterDTO userRegisterDTO)
         {
             try

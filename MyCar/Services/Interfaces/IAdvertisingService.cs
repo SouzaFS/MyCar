@@ -11,13 +11,13 @@ namespace MyCar.Services.Interfaces
 {
     public interface IAdvertisingService
     {
-        public Task<List<AdvertisingDTO>> GetAds();
+        public Task<List<AdvertisingModel>> GetAds();
 
-        public Task<AdvertisingDTO> GetAdById(int id);
+        public Task<AdvertisingModel> GetAdById(int id);
 
-        public Task CreateAd(AdvertisingDTO AdvertisingDTO);
+        public Task CreateAd(AdvertisingDTO advertisingDTO);
 
-        public Task UpdateAd(int id, AdvertisingDTO AdvertisingDTO);
+        public Task UpdateAd(int id, AdvertisingDTO advertisingDTO);
 
         public Task RemoveAdById(int id);
     }

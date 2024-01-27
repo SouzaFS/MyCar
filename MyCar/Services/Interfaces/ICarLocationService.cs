@@ -11,9 +11,9 @@ namespace MyCar.Services.Interfaces
 {
     public interface ICarLocationService
     {
-        public Task<List<CarLocationDTO>> GetCarsLocation();
+        public Task<List<CarLocationModel>> GetCarsLocation();
 
-        public Task<CarLocationDTO> GetCarLocationById(int id);
+        public Task<CarLocationModel> GetCarLocationById(int id);
 
         public Task CreateCarLocation(CarLocationDTO carLocationDTO);
 

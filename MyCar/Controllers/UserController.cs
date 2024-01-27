@@ -88,7 +88,7 @@ namespace MyCar.Controllers
         }
 
         [HttpPut]
-        [Route("{id}")]
+        [Route("id")]
         public async Task<IActionResult> UpdateUser(int id, UserDTO userDTO)
         {
             try

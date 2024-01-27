@@ -21,20 +21,20 @@ namespace MyCar.Services
             _baseRepository = new BaseRepository<CarAcessoryModel>();
         }
 
-        public async Task<List<CarAcessoryDTO>> GetCarsAcessories()
+        public async Task<List<CarAcessoryModel>> GetCarsAcessories()
         {
-            return CarAcessoryMapper.FromModelToDTOList(await _baseRepository.GetAll().ToListAsync());
+            return await _baseRepository.GetAll().ToListAsync();
         }
-        public async Task<CarAcessoryDTO> GetCarAcessoryById(int id)
+        public async Task<CarAcessoryModel> GetCarAcessoryById(int id)
         {
-            var carAcessoryDTO = await _baseRepository.GetByWhere(a => a.Id == id).FirstOrDefaultAsync();
-            return carAcessoryDTO != null ? CarAcessoryMapper.FromModelToDTO(carAcessoryDTO) : null;
+            var carAcessoryModel = await _baseRepository.GetByWhere(a => a.Id == id).FirstOrDefaultAsync();
+            return carAcessoryModel != null ? carAcessoryModel : null;
         }
 
-        public async Task<CarAcessoryDTO> GetCarAcessoriesByCarId(int id)
+        public async Task<CarAcessoryModel> GetCarAcessoriesByCarId(int id)
         {
-            var carAcessoryDTO = await _baseRepository.GetByWhere(a => a.CarModelId == id).FirstOrDefaultAsync();
-            return carAcessoryDTO != null ? CarAcessoryMapper.FromModelToDTO(carAcessoryDTO) : null;
+            var carAcessoryModel = await _baseRepository.GetByWhere(a => a.CarModelId == id).FirstOrDefaultAsync();
+            return carAcessoryModel != null ? carAcessoryModel : null;
         }
 
         public async Task CreateCarAcessory(CarAcessoryDTO carAcessoryDTO)
@@ -51,11 +51,9 @@ namespace MyCar.Services
 
         public async Task RemoveCarAcessoryById(int id)
         {
-            var carAcessoryDTO = await GetCarAcessoryById(id);
-            if (carAcessoryDTO != null)
+            var carAcessoryModel = await GetCarAcessoryById(id);
+            if (carAcessoryModel != null)
             {
-                var carAcessoryModel = CarAcessoryMapper.FromDTOToModel(carAcessoryDTO);
-                carAcessoryModel.Id = id;
                 await _baseRepository.DeleteAsync(carAcessoryModel);
             }
         }
