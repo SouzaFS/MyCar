@@ -11,9 +11,9 @@ namespace MyCar.Services.Interfaces
 {
     public interface IUserService
     {
-        public Task<List<UserDTO>> GetUsers();
+        public Task<List<UserModel>> GetUsers();
 
-        public Task<UserDTO> GetUserById(int id);
+        public Task<UserModel> GetUserById(int id);
 
         public Task CreateUser(UserDTO userDTO);
 

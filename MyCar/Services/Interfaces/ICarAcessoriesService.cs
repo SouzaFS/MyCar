@@ -11,11 +11,11 @@ namespace MyCar.Services.Interfaces
 {
     public interface ICarAcessoriesService
     {
-        public Task<List<CarAcessoryDTO>> GetCarsAcessories();
+        public Task<List<CarAcessoryModel>> GetCarsAcessories();
 
-        public Task<CarAcessoryDTO> GetCarAcessoryById(int id);
+        public Task<CarAcessoryModel> GetCarAcessoryById(int id);
 
-        public Task<CarAcessoryDTO> GetCarAcessoriesByCarId(int id);
+        public Task<CarAcessoryModel> GetCarAcessoriesByCarId(int id);
 
         public Task CreateCarAcessory(CarAcessoryDTO carAcessoryDTO);
 

@@ -11,11 +11,11 @@ namespace MyCar.Services.Interfaces
 {
     public interface ICarPhotosService
     {
-        public Task<List<CarPhotoDTO>> GetCarsPhotos();
+        public Task<List<CarPhotoModel>> GetCarsPhotos();
 
-        public Task<CarPhotoDTO> GetCarPhotoById(int id);
+        public Task<CarPhotoModel> GetCarPhotoById(int id);
 
-        public Task<CarPhotoDTO> GetCarPhotosByCarId(int id);
+        public Task<CarPhotoModel> GetCarPhotosByCarId(int id);
 
         public Task CreateCarPhoto(CarPhotoDTO carPhotosDTO);
 

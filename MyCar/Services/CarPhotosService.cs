@@ -21,21 +21,21 @@ namespace MyCar.Services
             _baseRepository = new BaseRepository<CarPhotoModel>();
         }
 
-        public async Task<List<CarPhotoDTO>> GetCarsPhotos()
+        public async Task<List<CarPhotoModel>> GetCarsPhotos()
         {
-            return CarPhotoMapper.FromModelToDTOList(await _baseRepository.GetAll().ToListAsync());
+            return await _baseRepository.GetAll().ToListAsync();
         }
 
-        public async Task<CarPhotoDTO> GetCarPhotoById(int id)
+        public async Task<CarPhotoModel> GetCarPhotoById(int id)
         {
-            var carPhotosDTO = await _baseRepository.GetByWhere(a => a.Id == id).FirstOrDefaultAsync();
-            return carPhotosDTO != null ? CarPhotoMapper.FromModelToDTO(carPhotosDTO) : null;
+            var carPhotosModel = await _baseRepository.GetByWhere(a => a.Id == id).FirstOrDefaultAsync();
+            return carPhotosModel != null ? carPhotosModel : null;
         }
 
-        public async Task<CarPhotoDTO> GetCarPhotosByCarId(int id)
+        public async Task<CarPhotoModel> GetCarPhotosByCarId(int id)
         {
-            var carPhotosDTO = await _baseRepository.GetByWhere(a => a.CarModelId == id).FirstOrDefaultAsync();
-            return carPhotosDTO != null ? CarPhotoMapper.FromModelToDTO(carPhotosDTO) : null;
+            var carPhotosModel = await _baseRepository.GetByWhere(a => a.CarModelId == id).FirstOrDefaultAsync();
+            return carPhotosModel != null ? carPhotosModel : null;
         }
 
         public async Task CreateCarPhoto(CarPhotoDTO carPhotosDTO)
@@ -52,11 +52,9 @@ namespace MyCar.Services
 
         public async Task RemoveCarPhotoById(int id)
         {
-            var carPhotosDTO = await GetCarPhotoById(id);
-            if (carPhotosDTO != null)
+            var carPhotosModel = await GetCarPhotoById(id);
+            if (carPhotosModel != null)
             {
-                var carPhotosModel = CarPhotoMapper.FromDTOToModel(carPhotosDTO);
-                carPhotosModel.Id = id;
                 await _baseRepository.DeleteAsync(carPhotosModel);
             }
         }

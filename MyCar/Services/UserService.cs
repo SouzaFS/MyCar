@@ -26,15 +26,15 @@ namespace MyCar.Services
             _md5 = MD5.Create();
         }
 
-        public async Task<List<UserDTO>> GetUsers()
+        public async Task<List<UserModel>> GetUsers()
         {
-            return UserMapper.FromModelToDTOList(await _baseRepository.GetAll().ToListAsync());
+            return await _baseRepository.GetAll().ToListAsync();
         }
 
-        public async Task<UserDTO> GetUserById(int id)
+        public async Task<UserModel> GetUserById(int id)
         {
-            var userDTO = await _baseRepository.GetByWhere(a => a.Id == id).FirstOrDefaultAsync();
-            return userDTO != null ? UserMapper.FromModelToDTO(userDTO) : null;
+            var userModel = await _baseRepository.GetByWhere(a => a.Id == id).FirstOrDefaultAsync();
+            return userModel != null ? userModel : null;
         }
 
         public async Task CreateUser(UserDTO userDTO)
@@ -54,11 +54,9 @@ namespace MyCar.Services
 
         public async Task RemoveUserById(int id)
         {
-            var userDTO = await GetUserById(id);
-            if (userDTO != null)
+            var userModel = await GetUserById(id);
+            if (userModel != null)
             {
-                var userModel = UserMapper.FromDTOToModel(userDTO);
-                userModel.Id = id;
                 await _baseRepository.DeleteAsync(userModel);
             } 
         }

@@ -44,7 +44,7 @@ namespace MyCar.Controllers
         }
 
         [HttpGet]
-        [Route("{id}")]
+        [Route("id")]
         public async Task<IActionResult> GetCarLocationById(int id)
         {
             try
@@ -87,7 +87,7 @@ namespace MyCar.Controllers
         }
 
         [HttpPut]
-        [Route("{id}")]
+        [Route("id")]
         public async Task<IActionResult> UpdateCarLocation(int id, CarLocationDTO carLocationDTO)
         {
             try

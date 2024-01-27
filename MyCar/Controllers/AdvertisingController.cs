@@ -44,7 +44,7 @@ namespace MyCar.Controllers
         }
 
         [HttpGet]
-        [Route("{id}")]
+        [Route("id")]
         public async Task<IActionResult> GetAdById(int id)
         {
             try
@@ -88,7 +88,7 @@ namespace MyCar.Controllers
         }
 
         [HttpPut]
-        [Route("{id}")]
+        [Route("id")]
         public async Task<IActionResult> UpdateAd(int id, AdvertisingDTO advertisingDTO)
         {
             try

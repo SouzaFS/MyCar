@@ -44,7 +44,7 @@ namespace MyCar.Controllers
         }
 
         [HttpGet]
-        [Route("{id}")]
+        [Route("id")]
         public async Task<IActionResult> GetCarAcessoryById(int id)
         {
             try
@@ -72,7 +72,7 @@ namespace MyCar.Controllers
         }
 
         [HttpGet]
-        [Route("{CarId}")]
+        [Route("CarId")]
         public async Task<IActionResult> GetCarAcessoriesByCarId(int id)
         {
             try
@@ -113,7 +113,7 @@ namespace MyCar.Controllers
         }
 
         [HttpPut]
-        [Route("{id}")]
+        [Route("id")]
         public async Task<IActionResult> UpdateCarAcessory(int id, CarAcessoryDTO carAcessoryDTO)
         {
             try

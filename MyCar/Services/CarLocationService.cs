@@ -21,15 +21,15 @@ namespace MyCar.Services
             _baseRepository = new BaseRepository<CarLocationModel>();
         }
 
-        public async Task<List<CarLocationDTO>> GetCarsLocation()
+        public async Task<List<CarLocationModel>> GetCarsLocation()
         {
-            return CarLocationMapper.FromModelToDTOList(await _baseRepository.GetAll().ToListAsync());
+            return await _baseRepository.GetAll().ToListAsync();
         }
 
-        public async Task<CarLocationDTO> GetCarLocationById(int id)
+        public async Task<CarLocationModel> GetCarLocationById(int id)
         {
-            var carLocationDTO = await _baseRepository.GetByWhere(a => a.Id == id).FirstOrDefaultAsync();
-            return carLocationDTO != null ? CarLocationMapper.FromModelToDTO(carLocationDTO) : null;
+            var carLocationModel = await _baseRepository.GetByWhere(a => a.Id == id).FirstOrDefaultAsync();
+            return carLocationModel != null ? carLocationModel : null;
         }
 
         public async Task CreateCarLocation(CarLocationDTO carLocationDTO)
@@ -46,11 +46,9 @@ namespace MyCar.Services
 
         public async Task RemoveCarLocationById(int id)
         {
-            var carLocationDTO = await GetCarLocationById(id);
-            if (carLocationDTO != null)
+            var carLocationModel = await GetCarLocationById(id);
+            if (carLocationModel != null)
             {
-                var carLocationModel = CarLocationMapper.FromDTOToModel(carLocationDTO);
-                carLocationModel.Id = id;
                 await _baseRepository.DeleteAsync(carLocationModel);
             }
         }
