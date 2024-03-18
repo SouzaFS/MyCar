@@ -10,7 +10,7 @@ using MyCar.Context;
 namespace MyCar.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240123022645_MyCar")]
+    [Migration("20240317230433_MyCar")]
     partial class MyCar
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -185,10 +185,16 @@ namespace MyCar.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Password")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Phone")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Surname")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Username")

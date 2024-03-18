@@ -17,7 +17,9 @@ namespace MyCar.Mappers
                 Username = userModel.Username,
                 Email = userModel.Email,
                 Phone = userModel.Phone,
-                Password = userModel.Password
+                Password = userModel.Password,
+                Name = userModel.Name,
+                Surname = userModel.Surname
             };
         }
 
@@ -28,7 +30,9 @@ namespace MyCar.Mappers
                 Username = userDTO.Username,
                 Email = userDTO.Email,
                 Phone = userDTO.Phone,
-                Password = userDTO.Password
+                Password = userDTO.Password,
+                Name = userDTO.Name,
+                Surname = userDTO.Surname
             };
         }
 

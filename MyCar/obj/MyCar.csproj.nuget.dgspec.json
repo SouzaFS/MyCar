@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Projetos\\Github\\MyCar\\MyCar\\MyCar.csproj": {}
+    "D:\\Documentos\\Projetos\\Development\\Github\\MyCar\\MyCar\\MyCar.csproj": {}
   },
   "projects": {
-    "C:\\Projetos\\Github\\MyCar\\MyCar\\MyCar.csproj": {
+    "D:\\Documentos\\Projetos\\Development\\Github\\MyCar\\MyCar\\MyCar.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Projetos\\Github\\MyCar\\MyCar\\MyCar.csproj",
+        "projectUniqueName": "D:\\Documentos\\Projetos\\Development\\Github\\MyCar\\MyCar\\MyCar.csproj",
         "projectName": "MyCar",
-        "projectPath": "C:\\Projetos\\Github\\MyCar\\MyCar\\MyCar.csproj",
-        "packagesPath": "C:\\Users\\erica\\.nuget\\packages\\",
-        "outputPath": "C:\\Projetos\\Github\\MyCar\\MyCar\\obj\\",
+        "projectPath": "D:\\Documentos\\Projetos\\Development\\Github\\MyCar\\MyCar\\MyCar.csproj",
+        "packagesPath": "C:\\Users\\FelipeErica\\.nuget\\packages\\",
+        "outputPath": "D:\\Documentos\\Projetos\\Development\\Github\\MyCar\\MyCar\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\erica\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\FelipeErica\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -88,7 +88,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }
