@@ -27,6 +27,7 @@ namespace MyCar.Context
         public DbSet<CarLocationModel> CarLocations { get; set; }
         public DbSet<CarPhotoModel> CarPhotos { get; set; }
         public DbSet<UserRegisterModel> UserRegisters { get; set; }
+        public DbSet<EmailModel> Emails { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
