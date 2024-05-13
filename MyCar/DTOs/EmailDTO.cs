@@ -5,6 +5,6 @@
         public string Subject { get; set; } = string.Empty;
         public string Body { get; set; } = string.Empty;
         public string Receiver { get; set; } = string.Empty;
-        public int CodeValidation { get; set; };
+        public int CodeValidation { get; set; }
     }
 }
