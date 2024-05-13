@@ -6,6 +6,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using MyCar.Context;
+using MyCar.ConvertData;
+using MyCar.ConvertData.Interface;
+using MyCar.DTOs;
 using MyCar.Services;
 using MyCar.Services.Interfaces;
 
@@ -45,6 +48,8 @@ namespace MyCar
             services.AddScoped<ICarAcessoriesService, CarAcessoriesService>();
             services.AddScoped<ICarLocationService, CarLocationService>();
             services.AddScoped<ICarPhotosService, CarPhotosService>();
+            services.AddScoped<IEmailService, EmailService>();
+            services.AddScoped<ISerialization<EmailDTO>, Serialization<EmailDTO>>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

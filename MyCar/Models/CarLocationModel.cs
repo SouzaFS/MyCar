@@ -10,8 +10,8 @@ namespace MyCar.Models
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        public string State { get; set; }
-        public string City { get; set; }
+        public string State { get; set; } = string.Empty;
+        public string City { get; set; } = string.Empty;
         public int CarModelId { get; set; }
         [ForeignKey("CarModelId")]
         public virtual CarModel CarModel { get; set; }

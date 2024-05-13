@@ -12,13 +12,10 @@ namespace MyCar.Services.Interfaces
     public interface IUserService
     {
         public Task<List<UserModel>> GetUsers();
-
         public Task<UserModel> GetUserById(int id);
-
+        public Task<UserModel> GetUserByEmail(string email);
         public Task CreateUser(UserDTO userDTO);
-
         public Task UpdateUser(int id, UserDTO userDTO);
-
         public Task RemoveUserById(int id);
     }
 

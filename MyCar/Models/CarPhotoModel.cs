@@ -13,6 +13,6 @@ namespace MyCar.Models
         public int CarModelId { get; set; }
         [ForeignKey("CarModelId")]
         public virtual CarModel CarModel { get; set; }
-        public string Photo { get; set; }
+        public string Photo { get; set; } = string.Empty;
     }
 }

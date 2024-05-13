@@ -1,14 +1,13 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Confluent.Kafka;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using MyCar.Context;
 using MyCar.DTOs;
-using MyCar.Mappers;
 using MyCar.Models;
 using MyCar.Services.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Security.Cryptography.X509Certificates;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace MyCar.Controllers
@@ -17,12 +16,10 @@ namespace MyCar.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private readonly AppDbContext _appDbContext;
         private readonly IUserService _userService;
 
-        public UsersController(AppDbContext appDbContext, IUserService userService)
+        public UsersController(IUserService userService)
         {
-            _appDbContext = appDbContext;
             _userService = userService;
         }
 
@@ -49,7 +46,7 @@ namespace MyCar.Controllers
         {
             try
             {
-                
+
                 var result = await _userService.GetUserById(id);
                 if (result != null)
                 {
@@ -67,7 +64,7 @@ namespace MyCar.Controllers
             }
             catch (Exception)
             {
-                return Problem(null,null,500);
+                return Problem(null, null, 500);
             }
 
         }

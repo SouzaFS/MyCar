@@ -36,6 +36,19 @@ namespace MyCar.Mappers
             };
         }
 
+        /*public static SendEmail.Model.User FromDTOUserToSendEmailUser(UserDTO userDTO)
+        {
+            return new SendEmail.Model.User()
+            {
+                Username = userDTO.Username,
+                Email = userDTO.Email,
+                Phone = userDTO.Phone,
+                Password = userDTO.Password,
+                Name = userDTO.Name,
+                Surname = userDTO.Surname
+            };
+        }*/
+
         public static List<UserDTO> FromModelToDTOList(List<UserModel> userModelList)
         {
             var userDTOList = new List<UserDTO>();

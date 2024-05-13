@@ -36,6 +36,11 @@ namespace MyCar.Services
             var userModel = await _baseRepository.GetByWhere(a => a.Id == id).FirstOrDefaultAsync();
             return userModel != null ? userModel : null;
         }
+        public async Task<UserModel> GetUserByEmail(string email)
+        {
+            var userModel = await _baseRepository.GetByWhere(a => a.Email == email).FirstOrDefaultAsync();
+            return userModel != null ? userModel : null;
+        }
 
         public async Task CreateUser(UserDTO userDTO)
         {
