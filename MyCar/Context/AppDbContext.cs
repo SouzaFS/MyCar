@@ -1,5 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
 using MyCar.Models;
 using System;
 using System.Collections.Generic;
@@ -29,7 +31,31 @@ namespace MyCar.Context
         public DbSet<UserRegisterModel> UserRegisters { get; set; }
         public DbSet<EmailModel> Emails { get; set; }
 
+        //FOR MYSQL
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            var configuration = WebApplication.CreateBuilder();
+            string connectionString = configuration.Configuration["MySQLConnection:MySQLServerConnection"];
+            optionsBuilder.UseMySql(connectionString, new MySqlServerVersion(new Version(11, 2, 2)),
+                mysqlOptions =>
+                {
+                    
+                    mysqlOptions.EnableRetryOnFailure();
+                });
+        }
+
+        /*protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            IConfiguration configuration = new ConfigurationBuilder()
+            .SetBasePath(Directory.GetCurrentDirectory())
+            .AddJsonFile("appsettings.json", false, true)
+            .Build();
+
+            optionsBuilder.UseSqlServer(configuration.GetConnectionString("MySQLServerConnection"));
+        }*/
+
+        //FOR SSMS
+        /*protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             IConfiguration configuration = new ConfigurationBuilder()
             .SetBasePath(Directory.GetCurrentDirectory())
@@ -37,6 +63,6 @@ namespace MyCar.Context
             .Build();
 
             optionsBuilder.UseSqlServer(configuration.GetConnectionString("ServerConnection"));
-        }
+        }*/
     }
 }
