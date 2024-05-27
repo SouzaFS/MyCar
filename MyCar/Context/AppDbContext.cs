@@ -1,11 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.EntityFrameworkCore;
 using MyCar.Models;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace MyCar.Context
 {
@@ -31,12 +27,13 @@ namespace MyCar.Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            IConfiguration configuration = new ConfigurationBuilder()
-            .SetBasePath(Directory.GetCurrentDirectory())
-            .AddJsonFile("appsettings.json", false, true)
-            .Build();
-
-            optionsBuilder.UseSqlServer(configuration.GetConnectionString("ServerConnection"));
+            var configuration = WebApplication.CreateBuilder();
+            string connectionString = configuration.Configuration["MySQLConnection:MySQLServerConnection"];
+            optionsBuilder.UseMySql(connectionString, new MySqlServerVersion(new Version(11, 2, 2)),
+                mysqlOptions =>
+                {
+                    mysqlOptions.EnableRetryOnFailure();
+                });
         }
     }
 }

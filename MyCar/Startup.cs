@@ -11,6 +11,7 @@ using MyCar.ConvertData.Interface;
 using MyCar.DTOs;
 using MyCar.Services;
 using MyCar.Services.Interfaces;
+using System;
 
 namespace MyCar
 {
@@ -41,7 +42,16 @@ namespace MyCar
                     .AllowAnyOrigin();
                 });
             });
-            services.AddDbContext<AppDbContext>(option => option.UseSqlServer(Configuration.GetConnectionString("ServerConnection")));
+
+            services.AddDbContext<AppDbContext>(options =>
+            {
+                options.UseMySql(Configuration["MySQLConnection:MySQLServerConnection"], new MySqlServerVersion(new Version(11, 2, 2)),
+                    mysqlOptions =>
+                    {
+                        mysqlOptions.EnableRetryOnFailure();
+                    });
+            });
+
             services.AddScoped<ICarService, CarService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IAdvertisingService, AdvertisingService>();
@@ -60,10 +70,9 @@ namespace MyCar
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "MyCar v1"));
-
             }
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
             app.UseCors("MyPolicy");
 
             app.UseRouting();
