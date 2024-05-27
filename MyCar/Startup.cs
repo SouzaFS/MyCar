@@ -43,14 +43,6 @@ namespace MyCar
                 });
             });
 
-            //FOR SSMS
-            /*services.AddDbContext<AppDbContext>(options =>
-            {
-                options.UseSqlServer(Configuration.GetConnectionString("ServerConnection"));
-            });*/
-
-
-            //FOR MySQL
             services.AddDbContext<AppDbContext>(options =>
             {
                 options.UseMySql(Configuration["MySQLConnection:MySQLServerConnection"], new MySqlServerVersion(new Version(11, 2, 2)),
@@ -59,6 +51,7 @@ namespace MyCar
                         mysqlOptions.EnableRetryOnFailure();
                     });
             });
+
             services.AddScoped<ICarService, CarService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IAdvertisingService, AdvertisingService>();
@@ -77,10 +70,9 @@ namespace MyCar
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "MyCar v1"));
-
             }
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
             app.UseCors("MyPolicy");
 
             app.UseRouting();
