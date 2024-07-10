@@ -1,18 +1,14 @@
 ﻿using Confluent.Kafka;
-using Microsoft.AspNetCore.Http;
+using Confluent.Kafka.Admin;
 using Microsoft.AspNetCore.Mvc;
+using MyCar.ConvertData.Interface;
 using MyCar.DTOs;
-using MyCar.Services;
+using MyCar.Mappers;
+using MyCar.Models;
 using MyCar.Services.Interfaces;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.DotNet.Scaffolding.Shared.Messaging;
-using System.Collections.Generic;
-using Newtonsoft.Json;
-using MyCar.ConvertData.Interface;
-using Microsoft.AspNetCore.Mvc.Routing;
-using MyCar.Models;
-using MyCar.Mappers;
 
 namespace MyCar.Controllers
 {
@@ -41,25 +37,40 @@ namespace MyCar.Controllers
                 {
                     var producerConfig = new ProducerConfig()
                     {
-                        BootstrapServers = "localhost:9092"
+                        BootstrapServers = "kafka-0:9092"
                     };
 
-                    string emailType = "CodeValidation";
+                    string topicName = "CodeValidation";
+                    using (var adminClient = new AdminClientBuilder(new AdminClientConfig { BootstrapServers = "kafka-0:9092" }).Build())
+                    {
+                        bool topicExist = adminClient.GetMetadata(TimeSpan.FromSeconds(1)).Topics.Any(a => a.Topic == topicName);
+                        if (!topicExist)
+                        {
+                            await adminClient.CreateTopicsAsync(new TopicSpecification[]
+                            {
+                                new TopicSpecification
+                                {
+                                    Name = topicName,
+                                    ReplicationFactor = 1,
+                                    NumPartitions = 1
+                                }
+                            });
+                        }
+                    }
                     int code = new Random().Next(10000, 99999);
-                    EmailDTO emailDTO = _emailService.CreateEmailTopics(emailType, userModel, code);
+                    
+                    EmailDTO emailDTO = _emailService.CreateEmailBody(topicName, userModel, code);
                     emailDTO.Receiver = userModel.Email;
                     emailDTO.CodeValidation = code;
                     EmailModel emailModel = EmailMapper.FromDTOToModel(emailDTO);
-
                     string emailString = _serialization.ObjSerialize(emailDTO);
-                    EmailDTO deserializedEmail = _serialization.ObjDeserialize(emailString);
 
-                    using (var producer = new ProducerBuilder<Null, string>(producerConfig).Build())
+                    using (var producerBuilder = new ProducerBuilder<Null, string>(producerConfig).Build())
                     {
-                        var topic = new TopicPartition("CodeValidationEmail", new Partition(0));
+                        var topic = new TopicPartition(topicName, new Partition(0));
                         var kafkaMessage = new Message<Null, string>{ Value = emailString};
 
-                        var messageSent = await producer.ProduceAsync(topic, kafkaMessage);
+                        var messageSent = await producerBuilder.ProduceAsync(topic, kafkaMessage);
                     }
 
                     await _emailService.CreateEmail(emailModel);
@@ -77,8 +88,8 @@ namespace MyCar.Controllers
             }
             catch (Exception e)
             {
-                var errorMessage = e;
-                return Problem(null, null, 500);
+                var errorMessage = e.Message;
+                return Problem(null, null, 500, errorMessage);
             }
         }
     }

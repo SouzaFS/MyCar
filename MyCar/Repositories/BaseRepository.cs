@@ -26,15 +26,19 @@ namespace MyCar.Repositories
             table = _appDbContext.Set<T>();
         }
 
-        public async Task CreateAsync(T entity)
+        public async Task<T> CreateAsync(T entity)
         {
             await table.AddAsync(entity);
             await _appDbContext.SaveChangesAsync();
+
+            return entity;
         }
 
-        public async Task DeleteAsync(T entity)
+        public async Task<T> DeleteAsync(T entity)
         {
             await table.Remove(entity).Context.SaveChangesAsync();
+
+            return null;
         }
 
         public IQueryable<T> GetAll()
@@ -47,9 +51,11 @@ namespace MyCar.Repositories
             return table.Where(predicate).AsNoTracking();
         }
 
-        public async Task UpdateAsync(T entity)
+        public async Task<T> UpdateAsync(T entity)
         {
             await table.Update(entity).Context.SaveChangesAsync();
+
+            return entity;
         }
     }
 }

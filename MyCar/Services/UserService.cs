@@ -1,30 +1,26 @@
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using MyCar.Context;
 using MyCar.DTOs;
 using MyCar.Mappers;
 using MyCar.Models;
 using MyCar.Repositories;
 using MyCar.Repositories.Interfaces;
 using MyCar.Services.Interfaces;
-using System;
+using NuGet.Protocol;
 using System.Collections.Generic;
-using System.Security.Cryptography;
-using System.Security.Cryptography.Xml;
-using System.Text;
+using System.Reflection;
 using System.Threading.Tasks;
+using MyCar.ObjectCheckers;
 
 namespace MyCar.Services
 {
     public class UserService : IUserService
     {
         private IBaseRepository<UserModel> _baseRepository = null;
-        private MD5 _md5;
 
         public UserService(){
             _baseRepository = new BaseRepository<UserModel>();
-            _md5 = MD5.Create();
         }
+
 
         public async Task<List<UserModel>> GetUsers()
         {
@@ -42,28 +38,64 @@ namespace MyCar.Services
             return userModel != null ? userModel : null;
         }
 
-        public async Task CreateUser(UserDTO userDTO)
+        public async Task<UserModel> CreateUser(UserDTO userDTO)
         {
-            //byte[] encryptPassword = _md5.ComputeHash(Encoding.UTF8.GetBytes(userDTO.Password));
-            //userDTO.Password = Convert.ToBase64String(encryptPassword);
-
-            await _baseRepository.CreateAsync(UserMapper.FromDTOToModel(userDTO));
+            bool hasNullOrEmptyStrings = NullOrEmptyStrings.IsAnyNullOrEmpty(userDTO);
+            if (!hasNullOrEmptyStrings)
+            {
+                var userModel = await _baseRepository.CreateAsync(UserMapper.FromDTOToModel(userDTO));
+                if (userModel != null)
+                {
+                    return userModel;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            else
+            {
+                return null;
+            }
         }
 
-        public async Task UpdateUser(int id, UserDTO userDTO)
+        public async Task<UserModel> UpdateUser(int id, UserDTO userDTO)
         {
-            var userModel = UserMapper.FromDTOToModel(userDTO);
-            userModel.Id = id;
-            await _baseRepository.UpdateAsync(userModel);
+            bool hasNullOrEmptyStrings = NullOrEmptyStrings.IsAnyNullOrEmpty(userDTO);
+            if (!hasNullOrEmptyStrings)
+            {
+                var userModel = UserMapper.FromDTOToModel(userDTO);
+                userModel.Id = id;
+                var result = await _baseRepository.UpdateAsync(userModel);
+                if (result != null)
+                {
+                    return result;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            else
+            {
+                return null;
+            }
+           
+            
         }
 
-        public async Task RemoveUserById(int id)
+        public async Task<bool> RemoveUserById(int id)
         {
             var userModel = await GetUserById(id);
             if (userModel != null)
             {
                 await _baseRepository.DeleteAsync(userModel);
-            } 
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
     
