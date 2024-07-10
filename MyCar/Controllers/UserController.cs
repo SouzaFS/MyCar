@@ -1,13 +1,8 @@
-﻿using Confluent.Kafka;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MyCar.DTOs;
-using MyCar.Models;
 using MyCar.Services.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace MyCar.Controllers
@@ -74,8 +69,15 @@ namespace MyCar.Controllers
         {
             try
             {
-                await _userService.CreateUser(userDTO);
-                return new ObjectResult(null) { StatusCode = StatusCodes.Status201Created };
+                var result = await _userService.CreateUser(userDTO);
+                if (result != null)
+                {
+                    return new ObjectResult(null) { StatusCode = StatusCodes.Status201Created };
+                }
+                else
+                {
+                    return BadRequest();
+                }
 
             }
             catch (Exception)
@@ -104,8 +106,16 @@ namespace MyCar.Controllers
         {
             try
             {
-                await _userService.RemoveUserById(id);
-                return NoContent();
+                var result = await _userService.RemoveUserById(id);
+                if (result)
+                {
+                    return NoContent();
+                }
+                else
+                {
+                    return BadRequest();
+                }
+                
             }
             catch (Exception e)
             {

@@ -11,10 +11,10 @@ namespace MyCar.Repositories.Interfaces
 
         IQueryable<T> GetByWhere(Expression<Func<T, bool>> predicate);
 
-        Task CreateAsync(T entity);
+        Task<T> CreateAsync(T entity);
 
-        Task UpdateAsync(T entity);
+        Task<T> UpdateAsync(T entity);
 
-        Task DeleteAsync(T entity);
+        Task<T> DeleteAsync(T entity);
     }
 }

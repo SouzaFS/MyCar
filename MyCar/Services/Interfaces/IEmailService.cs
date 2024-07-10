@@ -8,6 +8,6 @@ namespace MyCar.Services.Interfaces
     {
         public Task CreateEmail(EmailModel emailModel);
 
-        public EmailDTO CreateEmailTopics(string emailType, UserModel userModel, int codeValidation);
+        public EmailDTO CreateEmailBody(string emailType, UserModel userModel, int codeValidation);
     }
 }

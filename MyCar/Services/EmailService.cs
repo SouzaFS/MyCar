@@ -53,11 +53,11 @@ namespace MyCar.Services
             }
         }
 
-        public EmailDTO CreateEmailTopics(string emailType, UserModel userModel, int codeValidation)
+        public EmailDTO CreateEmailBody(string topicName, UserModel userModel, int codeValidation)
         {
-            if (emailType != null)
+            if (topicName != null)
             {
-                if (emailType == "CodeValidation")
+                if (topicName == "CodeValidation")
                 {
                     EmailDTO email = new EmailDTO()
                     {
@@ -93,7 +93,7 @@ namespace MyCar.Services
                     };
                     return email;
                 }
-                else if (emailType == "Registration")
+                else if (topicName == "Registration")
                 {
                     EmailDTO email = new EmailDTO()
                     {

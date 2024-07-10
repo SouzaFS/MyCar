@@ -14,9 +14,9 @@ namespace MyCar.Services.Interfaces
         public Task<List<UserModel>> GetUsers();
         public Task<UserModel> GetUserById(int id);
         public Task<UserModel> GetUserByEmail(string email);
-        public Task CreateUser(UserDTO userDTO);
-        public Task UpdateUser(int id, UserDTO userDTO);
-        public Task RemoveUserById(int id);
+        public Task<UserModel> CreateUser(UserDTO userDTO);
+        public Task<UserModel> UpdateUser(int id, UserDTO userDTO);
+        public Task<bool> RemoveUserById(int id);
     }
 
 }
