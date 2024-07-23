@@ -11475,7 +11475,7 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\EricaFelipe\\.nuget\\packages\\": {}
+    "C:\\Windows\\system32\\config\\systemprofile\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
@@ -11483,11 +11483,11 @@
       "projectUniqueName": "F:\\Documentos\\Projetos\\Development\\Github\\MyCar\\MyCar\\MyCar.csproj",
       "projectName": "MyCar",
       "projectPath": "F:\\Documentos\\Projetos\\Development\\Github\\MyCar\\MyCar\\MyCar.csproj",
-      "packagesPath": "C:\\Users\\EricaFelipe\\.nuget\\packages\\",
+      "packagesPath": "C:\\Windows\\system32\\config\\systemprofile\\.nuget\\packages\\",
       "outputPath": "F:\\Documentos\\Projetos\\Development\\Github\\MyCar\\MyCar\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\EricaFelipe\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Windows\\system32\\config\\systemprofile\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
