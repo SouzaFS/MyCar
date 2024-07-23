@@ -13,7 +13,7 @@ pipeline {
         always {
             xunit (
                 thresholds: [ skipped(failureThreshold: '0'), failed(failureThreshold: '0') ],
-                tools: [ XUnit(pattern: '**/TestResults/*.xml') ]
+                tools: [ junit(pattern: '**/TestResults/*.xml') ]
             )
         }
     }
