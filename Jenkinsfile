@@ -2,7 +2,7 @@ pipeline {
 	agent any
 	stages {
 		stage('Unit Tests') {
-			step('Run Unit Tests') {
+			steps('Run Unit Tests') {
 				bat 'dotnet test --test-adapter-path:. --logger:xunit'
 			}
 		}
