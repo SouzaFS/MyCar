@@ -31,7 +31,7 @@ namespace MyCarUnitTests.UnitTests
             var expectedResult = user;
 
             //Assert
-            Assert.NotNull(user);
+            Assert.Null(user);
             Assert.Equal(expectedResult, serviceResult);
 
         }
